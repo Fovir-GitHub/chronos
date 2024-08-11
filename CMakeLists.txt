@@ -7,10 +7,6 @@ set(CMAKE_C_STANDARD_REQUIRED True)
 
 include_directories(src/include)
 
-file(
-	GLOB SOURCES 
-	"src/*.c" 
-	"src/include/choose_operation/*.c"
-)
+file(GLOB SOURCES "src/*.c" )
 
 add_executable(chronos ${SOURCES})
