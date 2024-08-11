@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-11 21:04:56
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-11 21:09:54
+ * @Last Modified time: 2024-08-11 21:11:47
  * @Description: The file include constants to be used in this project.
  */
 
@@ -12,7 +12,7 @@
 
 enum Operations
 {
-	ADD, REMOVE, LIST, RESET
+	ADD, REMOVE, LIST, RESET, ERROR
 };
 
 #endif // !_CONSTANT_H_
