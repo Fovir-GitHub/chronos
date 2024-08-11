@@ -1,7 +1,7 @@
-#include "choose_operation.h"
-#include <string.h>
-#include "../constant.h"
-#include <ctype.h>
+#include"include/choose_operation.h"
+#include"include/constant.h"
+#include<string.h>
+#include<ctype.h>
 
 static void string_to_lower(char * str);
 
