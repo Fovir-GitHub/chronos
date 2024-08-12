@@ -25,7 +25,7 @@ bool get_time_from_user(ScheduleTime * st)
 	int st_length;
 	static int big_months[BIG_MONTHS_NUMBER] = { 1,3,5,7,8,10,12 };
 
-	memset(st, 0, sizeof(st));
+	memset(st, 0, sizeof(*st));
 
 	// get date
 	puts("Please enter the date (YYYY-MM-DD or MM-DD):");
@@ -38,12 +38,10 @@ bool get_time_from_user(ScheduleTime * st)
 		// check non-digit
 		for (int i = 0; i < st_length; i++)
 		{
-			if (i == 4 || i == 7)
-				continue;
-			if (!isdigit(date[i]))
+			if (!isdigit(date[i]) && !(i == 4 || i == 7))
 			{
 				fprintf(stderr, "Invalid format.\n");
-				memset(st, 0, sizeof(st));
+				memset(st, 0, sizeof(*st));
 				return false;
 			}
 		}
@@ -51,7 +49,7 @@ bool get_time_from_user(ScheduleTime * st)
 			st->year = st->year * 10 + character2integer(date[i]);
 		for (int i = 5; i < 7; i++)	/* get month */
 			st->month = st->month * 10 + character2integer(date[i]);
-		for (int i = 8; i < 10; i++)	/* get day */
+		for (int i = 8; i < st_length; i++)	/* get day */
 			st->day = st->day * 10 + character2integer(date[i]);
 	}
 	else if (st_length == 5)
@@ -63,7 +61,7 @@ bool get_time_from_user(ScheduleTime * st)
 			if (!isdigit(date[i]))
 			{
 				fprintf(stderr, "Invalid format.\n");
-				memset(st, 0, sizeof(st));
+				memset(st, 0, sizeof(*st));
 				return false;
 			}
 		}
@@ -81,7 +79,7 @@ bool get_time_from_user(ScheduleTime * st)
 	else
 	{
 		fprintf(stderr, "Invalide format.\n");
-		memset(st, 0, sizeof(st));
+		memset(st, 0, sizeof(*st));
 		return false;
 	}
 
@@ -91,8 +89,8 @@ bool get_time_from_user(ScheduleTime * st)
 		{
 			if (st->day > 31)
 			{
-				fprintf(stderr, "Invalid date.\n");
-				memset(st, 0, sizeof(st));
+				fprintf(stderr, "Error date.\n");
+				memset(st, 0, sizeof(*st));
 				return false;
 			}
 		}
@@ -102,23 +100,21 @@ bool get_time_from_user(ScheduleTime * st)
 		if (st->year % 4 == 0 && st->day > 29)
 		{
 			fprintf(stderr, "Error date.\n");
-			memset(st, 0, sizeof(st));
+			memset(st, 0, sizeof(*st));
 			return false;
 		}
 		else if (st->year % 4 != 0 && st->day > 28)
 		{
 			fprintf(stderr, "Error date.\n");
-			memset(st, 0, sizeof(st));
+			memset(st, 0, sizeof(*st));
 			return false;
 		}
-		else
-			return true;
 	}
 	else
 		if (st->day > 30)
 		{
 			fprintf(stderr, "Error date.\n");
-			memset(st, 0, sizeof(st));
+			memset(st, 0, sizeof(*st));
 			return false;
 		}
 
@@ -128,7 +124,7 @@ bool get_time_from_user(ScheduleTime * st)
 	if (strlen(date) != 5)
 	{
 		fprintf(stderr, "Invalid format.\n");
-		memset(st, 0, sizeof(st));
+		memset(st, 0, sizeof(*st));
 		return false;
 	}
 
@@ -136,7 +132,7 @@ bool get_time_from_user(ScheduleTime * st)
 		if (i != 2 && !isdigit(date[i]))
 		{
 			fprintf(stderr, "Invalid format.\n");
-			memset(st, 0, sizeof(st));
+			memset(st, 0, sizeof(*st));
 			return false;
 		}
 
@@ -149,7 +145,7 @@ bool get_time_from_user(ScheduleTime * st)
 	if (st->hour > 23 || st->mininute > 59)
 	{
 		fprintf(stderr, "Error time.\n");
-		memset(st, 0, sizeof(st));
+		memset(st, 0, sizeof(*st));
 		return false;
 	}
 

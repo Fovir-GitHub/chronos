@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-11 21:04:56
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 14:35:31
+ * @Last Modified time: 2024-08-12 15:35:09
  * @Description: The file include constants to be used in this project.
  */
 
@@ -14,6 +14,7 @@
 #define TITLE_LENGTH 81
 #define DETAIL_LENGTH 129
 #define DATE_LENGTH 11
+#define BIG_MONTHS_NUMBER 7
 
 #define ERROR -1
 
