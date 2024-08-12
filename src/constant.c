@@ -2,5 +2,5 @@
 
 const char * g_operations[OPEARTION_NUMBER] =
 {
-	"add","remove","list","reset"
+	"add","remove","list","edit"
 };
