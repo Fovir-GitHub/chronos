@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-12 12:39:16
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 12:46:16
+ * @Last Modified time: 2024-08-12 13:36:01
  * @Description: This file stroes event operations.
  */
 
@@ -11,6 +11,7 @@
 #define _SCHEDULE_EVENT_H_
 
 #include<time.h>
+#include<stdbool.h>
 
  /// @brief This structure is used to store time.
 typedef struct schedule_time
@@ -30,23 +31,15 @@ typedef struct event
 	char * detail;
 }Event;
 
-typedef struct node
-{
-	Event node_event;
-	struct node * previous;
-	struct node * next;
-}Node;
-
-typedef struct link_list
-{
-	Node * head;
-	Node * tail;
-}LinkList;
-
+// ScheduleTime operations:
 
 /// @brief This function is used to make up a schedule time.
 /// @param time_struct the structure to be defined
 void make_time(ScheduleTime * st, int mininute,
 	int hour, int day, int month, int year);
+
+void get_time_from_user(ScheduleTime * st);
+
+void get_time_from_json();
 
 #endif // !_SCHEDULE_EVENT_H_
