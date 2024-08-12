@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-12 12:39:16
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 17:54:20
+ * @Last Modified time: 2024-08-12 20:39:58
  * @Description: This file stroes event operations.
  */
 
@@ -31,6 +31,7 @@ typedef struct event
 	bool status;
 	char * title;
 	char * detail;
+	int uid;
 }Event;
 
 // ScheduleTime operations:
@@ -43,5 +44,12 @@ void make_time(ScheduleTime * st, int minute,
 bool get_time_from_user(ScheduleTime * st);
 
 void get_time_from_json();
+
+/// @brief This function is used to check the order of events.
+/// @param first the first event
+/// @param second the second event
+/// @return If event fist is earlier than the second, it will return 1. If they are the same, it will return 0.
+/// Otherwise, it will return -1.
+int compare_events(Event * first, Event * second);
 
 #endif // !_SCHEDULE_EVENT_H_

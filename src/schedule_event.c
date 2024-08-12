@@ -153,6 +153,44 @@ bool get_time_from_user(ScheduleTime * st)
 }
 
 
+int compare_events(Event * first, Event * second)
+{
+#define FIRST_EARLIER_THAN_SECOND 1
+#define SECOND_EARLIER_THAN_FIRST -1
+#define FIRST_AND_SECOND_ARE_THE_SAME 0
+
+	if (first->start_time.year < second->start_time.year)
+		return FIRST_EARLIER_THAN_SECOND;
+	else if (first->start_time.year > second->start_time.year)
+		return SECOND_EARLIER_THAN_FIRST;
+
+	if (first->start_time.month < second->start_time.month)
+		return FIRST_EARLIER_THAN_SECOND;
+	else if (first->start_time.month > second->start_time.month)
+		return SECOND_EARLIER_THAN_FIRST;
+
+	if (first->start_time.day < second->start_time.day)
+		return FIRST_EARLIER_THAN_SECOND;
+	else if (first->start_time.day > second->start_time.day)
+		return SECOND_EARLIER_THAN_FIRST;
+
+	if (first->start_time.hour < second->start_time.hour)
+		return FIRST_EARLIER_THAN_SECOND;
+	else if (first->start_time.hour > second->start_time.hour)
+		return SECOND_EARLIER_THAN_FIRST;
+
+	if (first->start_time.minute < second->start_time.minute)
+		return FIRST_EARLIER_THAN_SECOND;
+	else if (first->start_time.minute > second->start_time.minute)
+		return SECOND_EARLIER_THAN_FIRST;
+
+	return FIRST_AND_SECOND_ARE_THE_SAME;
+
+#undef FIRST_EARLIER_THAN_SECOND
+#undef SECOND_EARLIER_THAN_FIRST 
+#undef FIRST_AND_SECOND_ARE_THE_SAME
+}
+
 void eat_line(void)
 {
 	while (getchar() != '\n')
