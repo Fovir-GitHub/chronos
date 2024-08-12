@@ -10,7 +10,7 @@ int get_operation(char * operation)
 	string_to_lower(operation);
 
 	for (int i = 0; i < OPEARTION_NUMBER; i++)
-		if (strcmp(operation, OPERATIONS[i]) == 0)
+		if (strcmp(operation, g_operations[i]) == 0)
 			return i;
 
 	return ERROR;
