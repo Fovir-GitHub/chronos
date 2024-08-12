@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-12 12:39:16
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 13:36:01
+ * @Last Modified time: 2024-08-12 15:21:51
  * @Description: This file stroes event operations.
  */
 
@@ -38,7 +38,7 @@ typedef struct event
 void make_time(ScheduleTime * st, int mininute,
 	int hour, int day, int month, int year);
 
-void get_time_from_user(ScheduleTime * st);
+bool get_time_from_user(ScheduleTime * st);
 
 void get_time_from_json();
 
