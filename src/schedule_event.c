@@ -155,10 +155,6 @@ bool get_time_from_user(ScheduleTime * st)
 
 int compare_events(Event * first, Event * second)
 {
-#define FIRST_EARLIER_THAN_SECOND 1
-#define SECOND_EARLIER_THAN_FIRST -1
-#define FIRST_AND_SECOND_ARE_THE_SAME 0
-
 	if (first->start_time.year < second->start_time.year)
 		return FIRST_EARLIER_THAN_SECOND;
 	else if (first->start_time.year > second->start_time.year)
@@ -185,10 +181,6 @@ int compare_events(Event * first, Event * second)
 		return SECOND_EARLIER_THAN_FIRST;
 
 	return FIRST_AND_SECOND_ARE_THE_SAME;
-
-#undef FIRST_EARLIER_THAN_SECOND
-#undef SECOND_EARLIER_THAN_FIRST 
-#undef FIRST_AND_SECOND_ARE_THE_SAME
 }
 
 void eat_line(void)

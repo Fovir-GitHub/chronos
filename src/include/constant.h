@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-11 21:04:56
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 17:56:50
+ * @Last Modified time: 2024-08-12 20:52:12
  * @Description: The file include constants to be used in this project.
  */
 
@@ -18,6 +18,11 @@
 
 #define FINISHED true
 #define NOTSTART false
+
+ // for compare_events function
+#define FIRST_EARLIER_THAN_SECOND 1
+#define SECOND_EARLIER_THAN_FIRST -1
+#define FIRST_AND_SECOND_ARE_THE_SAME 0
 
 #define ERROR -1
 
