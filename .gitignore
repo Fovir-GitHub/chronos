@@ -1,5 +1,4 @@
 .vscode
 .editorconfig
 build/
-temp
 test/
