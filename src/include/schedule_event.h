@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-12 12:39:16
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 16:41:57
+ * @Last Modified time: 2024-08-12 17:54:20
  * @Description: This file stroes event operations.
  */
 
@@ -12,11 +12,12 @@
 
 #include<time.h>
 #include<stdbool.h>
+#include"constant.h"
 
  /// @brief This structure is used to store time.
 typedef struct schedule_time
 {
-	int mininute;
+	int minute;
 	int hour;
 	int day;
 	int month;
@@ -27,6 +28,7 @@ typedef struct event
 {
 	ScheduleTime start_time;
 	ScheduleTime due_time;
+	bool status;
 	char * title;
 	char * detail;
 }Event;
@@ -35,7 +37,7 @@ typedef struct event
 
 /// @brief This function is used to make up a schedule time.
 /// @param time_struct the structure to be defined
-void make_time(ScheduleTime * st, int mininute,
+void make_time(ScheduleTime * st, int minute,
 	int hour, int day, int month, int year);
 
 bool get_time_from_user(ScheduleTime * st);

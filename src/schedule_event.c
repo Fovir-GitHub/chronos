@@ -8,9 +8,9 @@
 static void eat_line(void);
 static int character2integer(char ch);
 
-void make_time(ScheduleTime * st, int mininute, int hour, int day, int month, int year)
+void make_time(ScheduleTime * st, int minute, int hour, int day, int month, int year)
 {
-	st->mininute = mininute;
+	st->minute = minute;
 	st->hour = hour;
 	st->day = day;
 	st->month = month;
@@ -140,9 +140,9 @@ bool get_time_from_user(ScheduleTime * st)
 	for (int i = 0; i < 2; i++)
 		st->hour = st->hour * 10 + character2integer(date[i]);
 	for (int i = 3; i < strlen(date); i++)
-		st->mininute = st->mininute * 10 + character2integer(date[i]);
+		st->minute = st->minute * 10 + character2integer(date[i]);
 
-	if (st->hour > 23 || st->mininute > 59)
+	if (st->hour > 23 || st->minute > 59)
 	{
 		fprintf(stderr, "Error time.\n");
 		memset(st, 0, sizeof(*st));

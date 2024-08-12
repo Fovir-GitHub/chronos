@@ -7,7 +7,7 @@ int main(int argc, char * argv[])
 	ScheduleTime st;
 	get_time_from_user(&st);
 
-	printf("%d %d %d\n%d %d", st.year, st.month, st.day, st.hour, st.mininute);
+	printf("%d %d %d\n%d %d", st.year, st.month, st.day, st.hour, st.minute);
 
 	return 0;
 }
