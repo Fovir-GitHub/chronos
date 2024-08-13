@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-12 13:35:33
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 21:08:50
+ * @Last Modified time: 2024-08-13 16:44:38
  * @Description: This file defines link list for event.
  */
 
@@ -32,5 +32,7 @@ void initialize_link_list(LinkList * plist);
 /// @return If the function added successfully, it will return true. Otherwise, it returns false.
 bool add_new_event(LinkList * plist, Event new_event);
 
+/// @brief The function is used to show link list's content.
+void show_link_list(const LinkList * plist);
 
 #endif // !_LINK_LIST_H_
