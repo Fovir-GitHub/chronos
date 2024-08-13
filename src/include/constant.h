@@ -10,6 +10,8 @@
 #ifndef _CONSTANT_H_
 #define _CONSTANT_H_
 
+#include<stdbool.h>
+
 #define OPEARTION_NUMBER 4
 #define TITLE_LENGTH 81
 #define DETAIL_LENGTH 129
@@ -25,6 +27,9 @@
 #define FIRST_AND_SECOND_ARE_THE_SAME 0
 
 #define ERROR -1
+
+#define UID_MAX_NUMBER 512	/* UID record array size */
+bool uid_record[UID_MAX_NUMBER];
 
 enum Operations
 {
