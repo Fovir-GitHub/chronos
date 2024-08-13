@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-11 21:04:56
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-13 16:05:01
+ * @Last Modified time: 2024-08-13 17:41:11
  * @Description: The file include constants to be used in this project.
  */
 
@@ -11,6 +11,8 @@
 #define _CONSTANT_H_
 
 #include<stdbool.h>
+
+#define DEBUG printf("debug\n")
 
 #define OPEARTION_NUMBER 4
 #define TITLE_LENGTH 81
