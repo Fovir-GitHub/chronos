@@ -11,6 +11,11 @@ static int character2integer(char ch);
 ScheduleTime * make_time(int year, int month, int day, int hour, int minute)
 {
 	ScheduleTime * st = (ScheduleTime *) malloc(sizeof(ScheduleTime));
+	if (!st)
+	{
+		perror("Can't allocate memory.");
+		exit(EXIT_FAILURE);
+	}
 	st->minute = minute;
 	st->hour = hour;
 	st->day = day;
