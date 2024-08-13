@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-12 12:39:16
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 20:39:58
+ * @Last Modified time: 2024-08-12 21:16:41
  * @Description: This file stroes event operations.
  */
 
@@ -24,6 +24,7 @@ typedef struct schedule_time
 	int year;
 }ScheduleTime;
 
+/// @brief This structure is used to store event
 typedef struct event
 {
 	ScheduleTime start_time;
@@ -31,7 +32,7 @@ typedef struct event
 	bool status;
 	char * title;
 	char * detail;
-	int uid;
+	int uid;	/* unique id */
 }Event;
 
 // ScheduleTime operations:
@@ -41,6 +42,10 @@ typedef struct event
 void make_time(ScheduleTime * st, int minute,
 	int hour, int day, int month, int year);
 
+/// @brief Get schedule time from user's input.
+/// @param st the operation object
+/// @return If get time successfully, it will return true.
+///	Otherwise, it will return false.
 bool get_time_from_user(ScheduleTime * st);
 
 void get_time_from_json();
