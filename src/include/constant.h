@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-11 21:04:56
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-12 20:52:12
+ * @Last Modified time: 2024-08-13 16:05:01
  * @Description: The file include constants to be used in this project.
  */
 
@@ -18,8 +18,10 @@
 #define DATE_LENGTH 11
 #define BIG_MONTHS_NUMBER 7
 
+ // JSON operation
 #define FINISHED true
 #define NOTSTART false
+#define JSON_FILE_PATH "data.json"
 
  // for compare_events function
 #define FIRST_EARLIER_THAN_SECOND 1
@@ -29,7 +31,7 @@
 #define ERROR -1
 
 #define UID_MAX_NUMBER 512	/* UID record array size */
-bool uid_record[UID_MAX_NUMBER];
+extern bool uid_record[UID_MAX_NUMBER];
 
 enum Operations
 {
