@@ -51,7 +51,7 @@ ScheduleTime * make_time_from_json_object(cJSON * date);
 /// @param st the operation object
 /// @return If get time successfully, it will return true.
 ///	Otherwise, it will return false.
-bool get_time_from_user(ScheduleTime * st);
+ScheduleTime * get_time_from_user(void);
 
 /// @brief This function is used to check the order of events.
 /// @param first the first event
