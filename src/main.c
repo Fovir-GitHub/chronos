@@ -1,13 +1,11 @@
 #include<stdio.h>
 #include"include/choose_operation.h"
 #include"include/schedule_event.h"
+#include"include/link_list.h"
 
 int main(int argc, char * argv[])
 {
-	ScheduleTime st;
-	get_time_from_user(&st);
-
-	printf("%d %d %d\n%d %d", st.year, st.month, st.day, st.hour, st.minute);
+	LinkList schedule;
 
 	return 0;
 }
