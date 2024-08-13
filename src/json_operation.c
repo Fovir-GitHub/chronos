@@ -1,12 +1,11 @@
 #include"include/json_operation.h"
 #include"include/constant.h"
 #include"include/schedule_event.h"
+#include"include/global_function.h"
 #include<cjson/cJSON.h>
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
-
-static char * copy_string(const char * original);
 
 char * read_json_file(const char * file_path)
 {
@@ -98,20 +97,4 @@ void read_event_from_json_file(LinkList * plist)
 	cJSON_Delete(json);
 
 	return;
-}
-
-char * copy_string(const char * original)
-{
-	size_t length = strlen(original) + 1;
-	char * copy = (char *) malloc(length);
-
-	if (!copy)
-	{
-		perror("Can't allocate memory.");
-		exit(EXIT_FAILURE);
-	}
-
-	strcpy(copy, original);
-
-	return copy;
 }
