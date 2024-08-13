@@ -8,15 +8,31 @@
 static void eat_line(void);
 static int character2integer(char ch);
 
-void make_time(ScheduleTime * st, int minute, int hour, int day, int month, int year)
+ScheduleTime * make_time(int year, int month, int day, int hour, int minute)
 {
+	ScheduleTime * st = (ScheduleTime *) malloc(sizeof(ScheduleTime));
 	st->minute = minute;
 	st->hour = hour;
 	st->day = day;
 	st->month = month;
 	st->year = year;
 
-	return;
+	return st;
+}
+
+ScheduleTime * make_time_from_json_object(cJSON * date)
+{
+	cJSON * year = cJSON_GetObjectItem(date, "year");
+	cJSON * month = cJSON_GetObjectItem(date, "month");
+	cJSON * day = cJSON_GetObjectItem(date, "day");
+	cJSON * hour = cJSON_GetObjectItem(date, "hour");
+	cJSON * minute = cJSON_GetObjectItem(date, "minute");
+
+	ScheduleTime * new_date = make_time(year->valueint,
+		month->valueint, day->valueint, hour->valueint,
+		minute->valueint);
+
+	return new_date;
 }
 
 bool get_time_from_user(ScheduleTime * st)
@@ -155,29 +171,29 @@ bool get_time_from_user(ScheduleTime * st)
 
 int compare_events(Event * first, Event * second)
 {
-	if (first->start_time.year < second->start_time.year)
+	if (first->start_time->year < second->start_time->year)
 		return FIRST_EARLIER_THAN_SECOND;
-	else if (first->start_time.year > second->start_time.year)
+	else if (first->start_time->year > second->start_time->year)
 		return SECOND_EARLIER_THAN_FIRST;
 
-	if (first->start_time.month < second->start_time.month)
+	if (first->start_time->month < second->start_time->month)
 		return FIRST_EARLIER_THAN_SECOND;
-	else if (first->start_time.month > second->start_time.month)
+	else if (first->start_time->month > second->start_time->month)
 		return SECOND_EARLIER_THAN_FIRST;
 
-	if (first->start_time.day < second->start_time.day)
+	if (first->start_time->day < second->start_time->day)
 		return FIRST_EARLIER_THAN_SECOND;
-	else if (first->start_time.day > second->start_time.day)
+	else if (first->start_time->day > second->start_time->day)
 		return SECOND_EARLIER_THAN_FIRST;
 
-	if (first->start_time.hour < second->start_time.hour)
+	if (first->start_time->hour < second->start_time->hour)
 		return FIRST_EARLIER_THAN_SECOND;
-	else if (first->start_time.hour > second->start_time.hour)
+	else if (first->start_time->hour > second->start_time->hour)
 		return SECOND_EARLIER_THAN_FIRST;
 
-	if (first->start_time.minute < second->start_time.minute)
+	if (first->start_time->minute < second->start_time->minute)
 		return FIRST_EARLIER_THAN_SECOND;
-	else if (first->start_time.minute > second->start_time.minute)
+	else if (first->start_time->minute > second->start_time->minute)
 		return SECOND_EARLIER_THAN_FIRST;
 
 	return FIRST_AND_SECOND_ARE_THE_SAME;
@@ -192,4 +208,23 @@ void eat_line(void)
 int character2integer(char ch)
 {
 	return (int) (ch - '0');
+}
+
+Event * make_event(char * title, char * detail, int uid, ScheduleTime * start_time, ScheduleTime * due_time, bool status)
+{
+	Event * new_event = (Event *) malloc(sizeof(Event));
+	if (!new_event)
+	{
+		perror("Can't allocate memory.");
+		exit(EXIT_FAILURE);
+	}
+
+	new_event->title = title;
+	new_event->detail = detail;
+	new_event->uid = uid;
+	new_event->start_time = start_time;
+	new_event->due_time = due_time;
+	new_event->status = status;
+
+	return new_event;
 }
