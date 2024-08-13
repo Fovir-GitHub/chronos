@@ -4,6 +4,9 @@
 #include<cjson/cJSON.h>
 #include<stdlib.h>
 #include<stdio.h>
+#include<string.h>
+
+static char * copy_string(const char * original);
 
 char * read_json_file(const char * file_path)
 {
@@ -79,8 +82,12 @@ void read_event_from_json_file(LinkList * plist)
 				ScheduleTime * due_time =
 					make_time_from_json_object(due_date);
 
-				Event * new_event = make_event(current_key->string,
-					detail->valuestring, uid->valueint,
+				// prevent cJSON_Delete()
+				char * copy_title = copy_string(current_key->string);
+				char * copy_detail = copy_string(detail->valuestring);
+
+				Event * new_event = make_event(copy_title,
+					copy_detail, uid->valueint,
 					start_time, due_time, status->valueint);
 
 				add_new_event(plist, *new_event);
@@ -88,8 +95,23 @@ void read_event_from_json_file(LinkList * plist)
 			}
 		}
 	}
-
 	cJSON_Delete(json);
 
 	return;
+}
+
+char * copy_string(const char * original)
+{
+	size_t length = strlen(original) + 1;
+	char * copy = (char *) malloc(length);
+
+	if (!copy)
+	{
+		perror("Can't allocate memory.");
+		exit(EXIT_FAILURE);
+	}
+
+	strcpy(copy, original);
+
+	return copy;
 }
