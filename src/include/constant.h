@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-11 21:04:56
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-13 17:41:11
+ * @Last Modified time: 2024-08-13 20:04:38
  * @Description: The file include constants to be used in this project.
  */
 
@@ -33,7 +33,7 @@
 #define ERROR -1
 
 #define UID_MAX_NUMBER 512	/* UID record array size */
-extern bool uid_record[UID_MAX_NUMBER];
+extern bool g_uid_record[UID_MAX_NUMBER];
 
 enum Operations
 {
