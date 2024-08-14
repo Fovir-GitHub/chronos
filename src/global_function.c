@@ -5,6 +5,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<ctype.h>
 
 void global_initialize(void)
 {
@@ -131,6 +132,104 @@ void remove_operation(LinkList * plist)
 	}
 
 	remove_event(plist, uid);
+
+	return;
+}
+
+void edit_operation(LinkList * plist, const char * unique_id, int status)
+{
+	int uid = 0;
+
+	if (status == HAVE_TERMINAL_ARGUMENT)
+	{
+		int length = strlen(unique_id);
+		for (int i = 0; i < length; i++)
+		{
+			if (!isdigit(unique_id[i]))
+			{
+				fprintf(stderr, "Invalid UID");
+				exit(EXIT_FAILURE);
+			}
+			uid = uid * 10 + character2integer(unique_id[i]);
+		}
+	}
+	else
+	{
+		show_link_list(plist);
+		putchar('\n');
+		printf("Please select the event's UID: ");
+		while (scanf("%d", &uid) != 1 || uid < 0 || uid >= UID_MAX_NUMBER - 1)
+		{
+			printf("Please enter the right uid again (0 - %d)\n",
+				UID_MAX_NUMBER - 1);
+			eat_line();
+		}
+	}
+
+	Node * edit_node = find_uid(plist, uid);
+	if (!edit_node)
+	{
+		fprintf(stderr, "Not found the uid: %d\n", uid);
+		exit(EXIT_FAILURE);
+	}
+
+	if (status == NO_TERMINAL_ARGUMENT)
+		eat_line();
+	else
+		show_node(edit_node);
+	char choice;
+	Event new_event = edit_node->node_event;
+	bool edited = false;
+
+	printf("Do you want to change the start time? [y/N]: ");
+	scanf("%c", &choice);
+	if (tolower(choice) == 'y')
+	{
+		edited = true;
+		new_event.start_time = get_time_from_user();
+	}
+
+	printf("Do you want to change the end time? [y/N]: ");
+	scanf("%c", &choice);
+	if (tolower(choice) == 'y')
+	{
+		edited = true;
+		new_event.due_time = get_time_from_user();
+	}
+
+	printf("Do you want to change the event's name? [y/N]: ");
+	scanf("%c", &choice);
+	if (tolower(choice) == 'y')
+	{
+		edited = true;
+		puts("Please enter the new event's name:");
+		eat_line();
+		s_gets(new_event.title, TITLE_LENGTH);
+	}
+
+	printf("Do you want to change the event's details [y/N]: ");
+	scanf("%c", &choice);
+	if (tolower(choice) == 'y')
+	{
+		edited = true;
+		puts("Please enter the new evnet's details:");
+		eat_line();
+		s_gets(new_event.detail, DETAIL_LENGTH);
+	}
+
+	printf("Do you want to upate the event's status? [y/N]: ");
+	scanf("%c", &choice);
+	if (tolower(choice) == 'y')
+	{
+		edited = true;
+		new_event.status ^= true;
+	}
+
+	if (edited)
+	{
+		remove_event(plist, uid);
+		add_new_event(plist, new_event);
+	}
 
 	return;
 }

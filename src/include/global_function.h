@@ -23,6 +23,13 @@ void add_operation(LinkList * plist);
 /// @param plist the target link list
 void remove_operation(LinkList * plist);
 
+/// @brief When user choose "edit" operation, this function will run.
+/// @param plist the link list storing data
+/// @param unique_id the unique_id entered in terminal
+/// @param status whether has the terminal's uid, possible value: 
+/// NO_TERMINAL_ARGUMENT or HAVE_TERMINAL_ARGUMENT (from constant.h )
+void edit_operation(LinkList * plist, const char * unique_id, int status);
+
 /// @brief This function is used to get a string whose max length is n.
 /// This reading includes space.
 /// @param str the source string
