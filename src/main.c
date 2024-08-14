@@ -63,5 +63,7 @@ int main(int argc, char * argv[])
 
 	show_link_list(&schedule);
 
+	before_quit(&schedule, OUTPUT_FILE_PATH);
+
 	return 0;
 }
