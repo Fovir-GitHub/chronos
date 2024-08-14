@@ -32,6 +32,9 @@
 
 #define ERROR -1
 
+#define NO_TERMINAL_ARGUMENT -1
+#define HAVE_TERMINAL_ARGUMENT -2
+
 #define UID_MAX_NUMBER 512	/* UID record array size */
 extern bool g_uid_record[UID_MAX_NUMBER];
 
