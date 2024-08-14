@@ -14,7 +14,7 @@ void global_initialize(void)
 	return;
 }
 
-void add_event_from_user_input(LinkList * plist)
+void add_operation(LinkList * plist)
 {
 	// check whether the event is full.
 	bool uid_is_full = true;
@@ -113,4 +113,34 @@ char * copy_string(const char * original)
 	strcpy(copy, original);
 
 	return copy;
+}
+
+void remove_operation(LinkList * plist)
+{
+	int uid;
+
+	show_link_list(plist);
+	putchar('\n');
+	puts("Please enter the uid of the event that you want to remove:");
+
+	while (scanf("%d", &uid) != 1 || uid < 0 || uid >= UID_MAX_NUMBER)
+	{
+		printf("Please enter the right uid again (0 - %d)\n",
+			UID_MAX_NUMBER - 1);
+		eat_line();
+	}
+
+	remove_event(plist, uid);
+
+	return;
+}
+
+int character2integer(char ch)
+{
+	return (int) (ch - '0');
+}
+
+void eat_line(void)
+{
+	while (getchar() != '\n');
 }
