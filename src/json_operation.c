@@ -98,3 +98,90 @@ void read_event_from_json_file(LinkList * plist)
 
 	return;
 }
+
+cJSON * make_json_from_event(const Event * event)
+{
+	cJSON * event_json = cJSON_CreateObject();
+	if (!event_json)
+	{
+		fprintf(stderr, "Can't create cJSON object.\n");
+		exit(EXIT_FAILURE);
+	}
+
+	cJSON_AddNumberToObject(event_json, "uid", event->uid);
+
+	cJSON * start_date = cJSON_CreateObject();
+	cJSON_AddNumberToObject(start_date, "year", event->start_time->year);
+	cJSON_AddNumberToObject(start_date, "month", event->start_time->month);
+	cJSON_AddNumberToObject(start_date, "day", event->start_time->day);
+	cJSON_AddNumberToObject(start_date, "hour", event->start_time->hour);
+	cJSON_AddNumberToObject(start_date, "minute", event->start_time->minute);
+	cJSON_AddItemToObject(event_json, "start_date", start_date);
+
+	cJSON * due_date = cJSON_CreateObject();
+	cJSON_AddNumberToObject(due_date, "year", event->due_time->year);
+	cJSON_AddNumberToObject(due_date, "month", event->due_time->month);
+	cJSON_AddNumberToObject(due_date, "day", event->due_time->day);
+	cJSON_AddNumberToObject(due_date, "hour", event->due_time->hour);
+	cJSON_AddNumberToObject(due_date, "minute", event->due_time->minute);
+	cJSON_AddItemToObject(event_json, "due_date", due_date);
+
+	cJSON_AddStringToObject(event_json, "detail", event->detail);
+	cJSON_AddNumberToObject(event_json, "status", event->status);
+
+	return event_json;
+}
+
+void before_quit(LinkList * plist, const char * file_path)
+{
+	cJSON * json = cJSON_CreateObject();
+	if (!json)
+	{
+		fprintf(stderr, "Can't create cJSON object.\n");
+		exit(EXIT_FAILURE);
+	}
+
+	Node * current = *plist;
+
+	while (current)
+	{
+		cJSON * event_json = make_json_from_event(&current->node_event);
+		if (!event_json)
+		{
+			fprintf(stderr, "Can't create cJSON object.\n");
+			exit(EXIT_FAILURE);
+		}
+
+		cJSON_AddItemToObject(json, current->node_event.title, event_json);
+		current = current->next;
+	}
+
+	output_to_json_file(file_path, json);
+	cJSON_Delete(json);
+
+	return;
+}
+
+void output_to_json_file(const char * file_path, cJSON * json)
+{
+	char * json_string = cJSON_Print(json);
+	if (!json_string)
+	{
+		fprintf(stderr, "Failed to print JSON.\n");
+		exit(EXIT_FAILURE);
+	}
+
+	FILE * output = fopen(file_path, "w");
+	if (!output)
+	{
+		fprintf(stderr, "Can't open file %s\n", file_path);
+		free(json_string);
+		exit(EXIT_FAILURE);
+	}
+
+	fprintf(output, "%s", json_string);
+	fclose(output);
+	free(json_string);
+
+	return;
+}

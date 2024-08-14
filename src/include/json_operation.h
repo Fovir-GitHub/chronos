@@ -20,4 +20,10 @@ char * read_json_file(const char * file_path);
 /// @brief This functin reads JSON data to make event.
 void read_event_from_json_file(LinkList * plist);
 
+void before_quit(LinkList * plist, const char * file_path);
+
+cJSON * make_json_from_event(const Event * event);
+
+void output_to_json_file(const char * file_path, cJSON * json);
+
 #endif // !_JSON_OPERATION_H_
