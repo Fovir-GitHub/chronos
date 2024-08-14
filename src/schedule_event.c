@@ -46,6 +46,7 @@ ScheduleTime * get_time_from_user(void)
 		perror("Can't allocate memory.");
 		exit(EXIT_FAILURE);
 	}
+	memset(st, 0, sizeof(st));
 
 	char date[DATE_LENGTH];
 	int st_length;
@@ -136,7 +137,7 @@ ScheduleTime * get_time_from_user(void)
 		}
 
 	// get time
-	puts("Please enter the time (hh:ss):");
+	puts("Please enter the time (hh:mm):");
 	scanf("%s", date);
 	eat_line();
 	if (strlen(date) != 5)
