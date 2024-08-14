@@ -1,12 +1,10 @@
-#include "include/schedule_event.h"
+#include"include/schedule_event.h"
 #include"include/constant.h"
+#include"include/global_function.h"
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
 #include<ctype.h>
-
-static void eat_line(void);
-static int character2integer(char ch);
 
 ScheduleTime * make_time(int year, int month, int day, int hour, int minute)
 {
@@ -197,17 +195,6 @@ int compare_events(Event * first, Event * second)
 		return SECOND_EARLIER_THAN_FIRST;
 
 	return FIRST_AND_SECOND_ARE_THE_SAME;
-}
-
-void eat_line(void)
-{
-	while (getchar() != '\n')
-		continue;
-}
-
-int character2integer(char ch)
-{
-	return (int) (ch - '0');
 }
 
 Event * make_event(char * title, char * detail, int uid, ScheduleTime * start_time, ScheduleTime * due_time, bool status)
