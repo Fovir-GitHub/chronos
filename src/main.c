@@ -53,6 +53,12 @@ int main(int argc, char * argv[])
 		else
 			remove_operation(&schedule);
 		break;
+	case EDIT:
+		if (argc == 2)
+			edit_operation(&schedule, NULL, NO_TERMINAL_ARGUMENT);
+		else
+			edit_operation(&schedule, argv[2], HAVE_TERMINAL_ARGUMENT);
+		break;
 	}
 
 	show_link_list(&schedule);
