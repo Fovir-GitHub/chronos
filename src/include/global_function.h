@@ -30,10 +30,17 @@ void remove_operation(LinkList * plist);
 /// @return the string read in
 char * s_gets(char * str, int n);
 
+/// @brief Copy a string to another string with malloc function.
+/// @param original the original string
+/// @return the new string
 char * copy_string(const char * original);
 
+/// @brief Covert character '0' to '9' to integer 0 to 9.
+/// @param ch the character
+/// @return the integer
 int character2integer(char ch);
 
+/// @brief Refresh the buffer.
 void eat_line(void);
 
 #endif // !_GLOBAL_FUNCTION_H_
