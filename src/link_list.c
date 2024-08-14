@@ -90,3 +90,47 @@ void show_link_list(const LinkList * plist)
 
 	return;
 }
+
+void remove_event(LinkList * plist, int unique_id)
+{
+	if (!(*plist))	/* the link list is empty */
+	{
+		fprintf(stderr, "Nothing to remove.");
+		exit(EXIT_FAILURE);
+	}
+
+	Node * current = *plist;
+	Node * previous = NULL;
+
+	if (current->next == NULL)	/* there is only one item in link list */
+	{
+		if (current->node_event.uid == unique_id)
+			current = NULL;
+		else
+			fprintf(stderr, "Not found event: %d", unique_id);
+		return;
+	}
+
+	while (current)
+	{
+		if (current->node_event.uid == unique_id)
+		{
+			if (previous == NULL)
+			{
+				*plist = current->next;
+				free(current);
+			}
+			else
+			{
+				previous->next = current->next;
+				free(current);
+			}
+			return;
+		}
+		previous = current;
+		current = current->next;
+	}
+
+	fprintf(stderr, "Not found event: %d", unique_id);
+	exit(EXIT_FAILURE);
+}

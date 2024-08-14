@@ -35,4 +35,9 @@ bool add_new_event(LinkList * plist, Event new_event);
 /// @brief The function is used to show link list's content.
 void show_link_list(const LinkList * plist);
 
+/// @brief This function is used to remove event in a link list.
+/// @param plist the link list
+/// @param unique_id the event's uid
+void remove_event(LinkList * plist, int unique_id);
+
 #endif // !_LINK_LIST_H_
