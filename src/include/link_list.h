@@ -40,4 +40,20 @@ void show_link_list(const LinkList * plist);
 /// @param unique_id the event's uid
 void remove_event(LinkList * plist, int unique_id);
 
+/// @brief This function tells whether the uid exist in the link list.
+/// @param plist the link list storing data
+/// @param uid the uid user want to search
+/// @return If the uid is found, it will return the pointer.
+/// Otherwise, it return NULL.
+Node * find_uid(LinkList * plist, int uid);
+
+/// @brief This function is used to copy a node to another.
+/// @param original the original node
+/// @return the new node
+Node * copy_node(Node * original);
+
+/// @brief This function shows one specific node.
+/// @param node pointer of the node to be shown
+void show_node(Node * node);
+
 #endif // !_LINK_LIST_H_
