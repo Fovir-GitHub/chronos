@@ -23,8 +23,6 @@
  // JSON operation
 #define FINISHED true
 #define NOTSTART false
-#define JSON_FILE_PATH "data.json"
-#define OUTPUT_FILE_PATH "output.json"
 
  // for compare_events function
 #define FIRST_EARLIER_THAN_SECOND 1
