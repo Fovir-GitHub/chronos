@@ -50,4 +50,6 @@ int character2integer(char ch);
 /// @brief Refresh the buffer.
 void eat_line(void);
 
+void restart_timer(void);
+
 #endif // !_GLOBAL_FUNCTION_H_

@@ -6,6 +6,10 @@
 #include<stdlib.h>
 #include<time.h>
 #include<ctype.h>
+#include<unistd.h>
+#include<sys/types.h>
+#include<sys/wait.h>
+#include<signal.h>
 
 void global_initialize(void)
 {
@@ -242,4 +246,41 @@ int character2integer(char ch)
 void eat_line(void)
 {
 	while (getchar() != '\n');
+}
+
+void restart_timer(void)
+{
+	char command[COMMAND_LENGTH];
+	char output[16];
+	bool running = false;
+
+	sprintf(command, "pgrep %s", TIMER_NAME);
+	FILE * fp = popen(command, "r");
+
+	if (!fp)
+	{
+		perror("popen");
+		exit(EXIT_FAILURE);
+	}
+
+	if (fgets(output, sizeof(output), fp))
+		running = true;
+	pclose(fp);
+
+	if (running)
+	{
+		sprintf(command, "pkill %s", TIMER_NAME);
+		system(command);
+	}
+	sleep(1);
+
+	pid_t pid = fork();
+	if (pid == 0)
+	{
+		execlp(TIMER_NAME, TIMER_NAME, NULL);
+		perror("execlp");
+		exit(EXIT_FAILURE);
+	}
+
+	return;
 }
