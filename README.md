@@ -2,6 +2,8 @@
 
 This is my practice program.
 
+# How to use
+
 # Future Plan
 
 1. Add download package.
