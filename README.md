@@ -10,3 +10,4 @@ This is my practice program.
 2. Add more function.
 3. Improve user-friendly.
 4. Add alarm sound.
+5. Add keyword hint.
