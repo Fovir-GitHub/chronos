@@ -7,6 +7,7 @@
 #include"include/link_list.h"
 #include"include/json_operation.h"
 #include"include/global_function.h"
+#include"include/constant.h"
 
 int main(int argc, char * argv[])
 {
@@ -63,7 +64,7 @@ int main(int argc, char * argv[])
 
 	show_link_list(&schedule);
 
-	before_quit(&schedule, OUTPUT_FILE_PATH);
+	before_quit(&schedule, get_json_file_path());
 
 	return 0;
 }
