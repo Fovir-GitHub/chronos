@@ -3,7 +3,7 @@
  * @Email: fovir@disroot.org
  * @Date: 2024-08-11 21:04:56
  * @Last Modified by:   Fovir
- * @Last Modified time: 2024-08-13 20:04:38
+ * @Last Modified time: 2024-08-15 15:33:44
  * @Description: The file include constants to be used in this project.
  */
 
@@ -19,6 +19,8 @@
 #define DETAIL_LENGTH 129
 #define DATE_LENGTH 11
 #define BIG_MONTHS_NUMBER 7
+#define COMMAND_LENGTH 256
+#define TIMER_NAME "chronos-timer"
 
  // JSON operation
 #define FINISHED true
