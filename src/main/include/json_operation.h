@@ -35,4 +35,6 @@ cJSON * make_json_from_event(const Event * event);
 /// @param json the JSON file content
 void output_to_json_file(const char * file_path, cJSON * json);
 
+char * get_json_file_path(void);
+
 #endif // !_JSON_OPERATION_H_

@@ -6,6 +6,26 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
+#include<unistd.h>
+#include<sys/types.h>
+#include<pwd.h>
+
+char * get_json_file_path(void)
+{
+	struct passwd * pw = getpwuid(getuid());
+	const char * home_dir = pw->pw_dir;
+
+	char * file_path = malloc(strlen(home_dir) +
+		strlen("/.config/chronos-data/data.json") + 1);
+
+	if (!file_path)
+	{
+		perror("Can't allocate memory.\n");
+		exit(EXIT_FAILURE);
+	}
+	sprintf(file_path, "%s/.config/chronos-data/data.json", home_dir);
+	return file_path;
+}
 
 char * read_json_file(const char * file_path)
 {
@@ -15,7 +35,7 @@ char * read_json_file(const char * file_path)
 	file = fopen(file_path, "r");
 	if (!file)
 	{
-		perror("Can't open the file");
+		fprintf(stderr, "Can't open %s\n", file_path);
 		exit(EXIT_FAILURE);
 	}
 
@@ -41,7 +61,7 @@ char * read_json_file(const char * file_path)
 
 void read_event_from_json_file(LinkList * plist)
 {
-	char * json_string = read_json_file(JSON_FILE_PATH);
+	char * json_string = read_json_file(get_json_file_path());
 	if (!json_string)
 	{
 		perror("Can't read in JSON file.");
