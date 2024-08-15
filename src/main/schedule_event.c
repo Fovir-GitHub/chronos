@@ -46,7 +46,7 @@ ScheduleTime * get_time_from_user(void)
 		perror("Can't allocate memory.");
 		exit(EXIT_FAILURE);
 	}
-	memset(st, 0, sizeof(st));
+	memset(st, 0, sizeof(*st));
 
 	char date[DATE_LENGTH];
 	int st_length;
@@ -76,19 +76,14 @@ ScheduleTime * get_time_from_user(void)
 		for (int i = 8; i < st_length; i++)	/* get day */
 			st->day = st->day * 10 + character2integer(date[i]);
 	}
-	else if (st_length == 5)
+	else if (st_length == 5)	/* MM-DD format */
 	{
 		for (int i = 0; i < st_length; i++)
-		{
-			if (i == 2)
-				continue;
-			if (!isdigit(date[i]))
+			if (!isdigit(date[i]) && i != 2)
 			{
 				fprintf(stderr, "Invalid format.\n");
 				exit(EXIT_FAILURE);
 			}
-		}
-
 		for (int i = 0; i < 2; i++)	/* get month */
 			st->month = st->month * 10 + character2integer(date[i]);
 		for (int i = 3; i < st_length; i++)	/* get day */
@@ -114,6 +109,7 @@ ScheduleTime * get_time_from_user(void)
 				fprintf(stderr, "Error date.\n");
 				exit(EXIT_FAILURE);
 			}
+			break;
 		}
 	// Specially, Feburary
 	if (st->month == 2)
