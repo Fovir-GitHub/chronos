@@ -108,7 +108,6 @@ void read_event_from_json_file(LinkList * plist)
 				Event * new_event = make_event(copy_title,
 					copy_detail, uid->valueint,
 					start_time, due_time, status->valueint);
-
 				add_new_event(plist, *new_event);
 				free(new_event);
 			}

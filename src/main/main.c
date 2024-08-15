@@ -61,10 +61,11 @@ int main(int argc, char * argv[])
 			edit_operation(&schedule, argv[2], HAVE_TERMINAL_ARGUMENT);
 		break;
 	}
-
-	show_link_list(&schedule);
+	if (choice != LIST)
+		show_link_list(&schedule);
 
 	before_quit(&schedule, get_json_file_path());
 
+	restart_timer();
 	return 0;
 }
