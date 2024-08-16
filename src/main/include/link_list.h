@@ -56,4 +56,6 @@ Node * copy_node(Node * original);
 /// @param node pointer of the node to be shown
 void show_node(Node * node);
 
+void free_link_list(LinkList * plist);
+
 #endif // !_LINK_LIST_H_

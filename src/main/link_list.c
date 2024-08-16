@@ -178,3 +178,16 @@ Node * copy_node(Node * original)
 
 	return new_node;
 }
+
+void free_link_list(LinkList * plist)
+{
+	Node * backup;
+	while (*plist)
+	{
+		backup = (*plist)->next;
+		free(*plist);
+		*plist = backup;
+	}
+
+	return;
+}
