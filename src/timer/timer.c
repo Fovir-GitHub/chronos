@@ -25,5 +25,6 @@ int main(void)
 		scan = scan->next;
 	}
 
+	free_link_list(&event_data);
 	return 0;
 }

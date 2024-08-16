@@ -65,7 +65,7 @@ int main(int argc, char * argv[])
 		show_link_list(&schedule);
 
 	before_quit(&schedule, get_json_file_path());
-
+	free_link_list(&schedule);
 	restart_timer();
 	return 0;
 }
